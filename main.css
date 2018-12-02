@@ -1,0 +1,32 @@
+* {
+    font-family: Verdana, san-serif;
+}
+
+body {
+	padding: 10%;
+}
+
+li {
+	padding: 10px;
+}
+.centered {
+  position: fixed; /* or absolute */
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  font-size: 800%;
+}
+
+.fakeButton {
+	background-color: black;
+	color: white;
+	width: 120px;
+	text-align: center;
+	padding: 10px;
+	cursor: pointer;
+}
+
+#intro, #survey, #visualTest, #audioTest, #endTest {display: none;}
+
+#audioButton, #visualButton {display: none;}
