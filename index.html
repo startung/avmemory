@@ -11,7 +11,6 @@
 
 <body onload="setup()">
 <div id="consent" class="sections">
-	<h1>Memory Test</h1>
 	<h2>Consent Form</h2>
 	<p>By clicking "accept" I consent to be a participant in the current research performed by Tim Chandler, Darren Rawlings, Lawrence Fulton, Johnathan Hewlett of the University of Groningen.</p>
 	<p>I have agreed to take part in the study entitled visual vs audio recall, and I understand that my participation is entirely voluntary. I understand that my responses will be kept strictly confidential and anonymous. I have the option to withdraw from this study at any time without penalty, and I also have the right to request that my responses not be used.</p>
@@ -24,18 +23,24 @@
 		<li>My responses will be treated confidentially and my anonymity will be ensured. Hence, my responses cannot be identifiable and linked back to me as an individual.</li>
 		<li>The researcher will answer any questions I might have regarding this research, now or later in the course of the study.</li>
 	</ol>
-	<div class="fakeButton"><a onclick="moveTo('intro')">accept</a></div>
+	<div class="fakeButton"><a onclick="moveTo('survey')">accept</a></div>
 </div>
 
 <div id="intro" class="sections">
-	<h1>Memory Test</h1>
 	<h2>Instructions</h2>
-	<p>Some instructions here</p>
-	<div class="fakeButton"><a onclick="moveTo('survey')">I understand</a></div>
+	<ul>
+		<li>The experiment consists of two halves</li>
+		<li>In each you will be presented with two lists of 15 words very briefly one-by-one</li>
+		<li>Either by the headphones or onscreen</li>
+		<li>After each set of words please try to recall in to the microphone as many words as possible</li>
+		<li>Then you may continue to the second list by pressing next, where a second list will be presented</li>
+		<li>When you click start, the experiment will begin immediately.</li>
+	</ul>
+	<p>If you have any questions please ask before clicking start.</p>
+	<div class="fakeButton"><a onclick="moveTo('test')">start</a></div>
 </div>
 
 <div id="survey" class="sections">
-	<h1>Memory Test</h1>
 	<h2>Survey</h2>
 	<form id="frm1">
 		<ul>
@@ -55,7 +60,7 @@
 				<input type="radio" name="education" value="postgraduate" />post-graduate<br>
 				<input type="radio" name="education" value="none" />none
 			</li>
-			<li>Confirmation of language criteria<br>
+			<li>Confirmation of English at CEFR level C1<br>
 				<input type="radio" name="language" value="yes" />yes<br>
 				<input type="radio" name="language" value="no" />no
 			</li>
@@ -63,7 +68,7 @@
 			<input type="hidden" name="falsePositivesAudio" value="" />
 		</ul>
 	</form>
-	<div class="fakeButton"><a onclick="moveTo('test')">start</a></div>
+	<div class="fakeButton"><a onclick="moveTo('intro')">submit</a></div>
 </div>
 
 <div id="visualTest">

@@ -1,7 +1,7 @@
 var words = ["the", "be", "to", "of", "and", "a", "in", "that", "have", "I", "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "they", "we", "say", "her", "she", "or", "an", "will", "my", "one", "all", "would", "there", "their", "what", "so", "up", "out", "if", "about", "who", "get", "which", "go", "me", "when", "make", "can", "like", "time", "no", "just", "him", "know", "take", "people", "into", "year", "your", "good", "some", "could", "them", "see", "other", "than", "then", "now", "look", "only", "come", "its", "over", "think", "also", "back", "after", "use", "two", "how", "our", "work", "first", "well", "way", "even", "new", "want", "because", "any", "these", "give", "day", "most", "us"];
-var listA = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-var listB = [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
-var duration = 1000; // the amount of time the words are displayed
+var listA = [96,52,17,65,73,29,9,50,74,93,44,87,19,14,15];
+var listB = [20,7,85,98,28,8,45,25,21,41,5,36,4,79,54];
+var duration = 1500; // the amount of time the words are displayed
 var firstTest = "";
 var visualDone = false;
 var audioDone = false;
@@ -96,7 +96,7 @@ function visualPlay(wordNum, visualList) { // recursive function to display word
 }
 
 function endVisualTest() {
-	document.getElementById("visualTest").innerHTML = '<div class="fakeButton" id="visualButton"><a onclick="moveTo(\'test\')">next</a></div>'; // select the word based on the number in list B
+	document.getElementById("visualTest").innerHTML = '<h1>Please repeat the words</h1><div class="fakeButton" id="visualButton"><a onclick="moveTo(\'test\')">next</a></div>'; // select the word based on the number in list B
 	document.getElementById("visualButton").style.display = "block";
 }
 
@@ -122,6 +122,7 @@ function audioPlay(wordNum, audioList) { // recursive function to display words
 }
 
 function endaudioFile() {
+	document.getElementById("audioTest").innerHTML = '<h1>Please repeat the words</h1><div class="fakeButton" id="audioButton"><a onclick="moveTo(\'test\')">next</a></div>'; // select the word based on the number in list B
 	document.getElementById("audioButton").style.display = "block";
 }
 
