@@ -1,10 +1,12 @@
 var words = ["the", "be", "to", "of", "and", "a", "in", "that", "have", "I", "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "they", "we", "say", "her", "she", "or", "an", "will", "my", "one", "all", "would", "there", "their", "what", "so", "up", "out", "if", "about", "who", "get", "which", "go", "me", "when", "make", "can", "like", "time", "no", "just", "him", "know", "take", "people", "into", "year", "your", "good", "some", "could", "them", "see", "other", "than", "then", "now", "look", "only", "come", "its", "over", "think", "also", "back", "after", "use", "two", "how", "our", "work", "first", "well", "way", "even", "new", "want", "because", "any", "these", "give", "day", "most", "us"];
-var listA = [96,52,17,65,73,29,9,50,74,93,44,87,19,14,15];
-var listB = [20,7,85,98,28,8,45,25,21,41,5,36,4,79,54];
+var listA = [74,71,40,68,98,93,49,58,50,60,52,89,54,72,44];
+var listB = [43,51,66,73,63,96,65,87,90,41,78,79,42,47,45];
+
 var duration = 1500; // the amount of time the words are displayed
 var firstTest = "";
 var visualDone = false;
 var audioDone = false;
+var theDate = new Date();
 var timestamp = Date.now();
 var downloadText = "";
 var visualList = '';
@@ -24,6 +26,8 @@ function setup() {
 	listB.shuffle(); // randomly order listB
 
 	document.getElementById("frm1").elements.namedItem("reference").value = timestamp;
+	document.getElementById("frm1").elements.namedItem("date").value = theDate.getDate() + '/' + theDate.getMonth() + '/' + theDate.getFullYear();
+	document.getElementById("frm1").elements.namedItem("time").value = theDate.getHours() + ':' + theDate.getMinutes();
 }
 
 Array.prototype.shuffle = function() { // Fisher-Yates shuffle
@@ -43,6 +47,7 @@ function moveTo(section){
 	document.getElementById('intro').style.display = "none";
 	document.getElementById('survey').style.display = "none";
 	document.getElementById('visualTest').style.display = "none";
+	document.getElementById('startpage').style.display = "none";
 	document.getElementById('audioTest').style.display = "none";
 	document.getElementById('endTest').style.display = "none";
 	
@@ -78,16 +83,30 @@ function moveTo(section){
 	}
 }
 
+function validateForm () {
+	var complete = true;
+	if(	!document.forms["frm1"]["gender"][0].checked && 
+		!document.forms["frm1"]["gender"][1].checked) complete = false;
+	if(document.getElementById("age").value == "") complete = false;
+	if(	!document.forms["frm1"]["education"][0].checked && 
+		!document.forms["frm1"]["education"][1].checked &&
+		!document.forms["frm1"]["education"][2].checked &&
+		!document.forms["frm1"]["education"][3].checked) complete = false;
+	if(	!document.forms["frm1"]["language"][0].checked && 
+		!document.forms["frm1"]["language"][1].checked) complete = false;
+	complete ? moveTo('intro') : document.getElementById("error").style.display = "block";
+}
+
 function visualPlay(wordNum, visualList) { // recursive function to display words
 	switch(visualList) {
 		case 'listA':
-			document.getElementById("visualTest").innerHTML = '<div class="centered">' + words[listA[wordNum]-1] + '</div>'; // select the word based on the number in list A
+			document.getElementById("visualTest").innerHTML = '<div class="word">' + words[listA[wordNum]-1] + '</div>'; // select the word based on the number in list A
 			if (wordNum < listA.length - 1) {
 				setTimeout(visualPlay, duration, wordNum+1, 'listA'); // Change image every duration ms
 			} else {setTimeout(endVisualTest, duration)};
 			break;
 		case 'listB':
-			document.getElementById("visualTest").innerHTML = '<div class="centered">' + words[listB[wordNum]-1] + '</div>'; // select the word based on the number in list B
+			document.getElementById("visualTest").innerHTML = '<div class="word">' + words[listB[wordNum]-1] + '</div>'; // select the word based on the number in list B
 			if (wordNum < listB.length - 1) {
 				setTimeout(visualPlay, duration, wordNum+1, 'listB'); // Change image every duration ms
 			} else {setTimeout(endVisualTest, duration)};
@@ -96,7 +115,7 @@ function visualPlay(wordNum, visualList) { // recursive function to display word
 }
 
 function endVisualTest() {
-	document.getElementById("visualTest").innerHTML = '<h1>Please repeat the words</h1><div class="fakeButton" id="visualButton"><a onclick="moveTo(\'test\')">next</a></div>'; // select the word based on the number in list B
+	document.getElementById("visualTest").innerHTML = '<h1>Please repeat the words</h1><div class="fakeButton centered" id="visualButton" onclick="moveTo(\'test\')">next</div>'; // select the word based on the number in list B
 	document.getElementById("visualButton").style.display = "block";
 }
 
@@ -122,7 +141,7 @@ function audioPlay(wordNum, audioList) { // recursive function to display words
 }
 
 function endaudioFile() {
-	document.getElementById("audioTest").innerHTML = '<h1>Please repeat the words</h1><div class="fakeButton" id="audioButton"><a onclick="moveTo(\'test\')">next</a></div>'; // select the word based on the number in list B
+	document.getElementById("audioTest").innerHTML = '<h1>Please repeat the words</h1><div class="fakeButton centered" id="audioButton" onclick="moveTo(\'test\')">next</div>'; // select the word based on the number in list B
 	document.getElementById("audioButton").style.display = "block";
 }
 
@@ -138,7 +157,7 @@ function downloadResults() {
     }
 	var data = new Blob([downloadText], {type: 'text/plain'});
 	var link = document.createElement('a');
-	link.setAttribute('download', timestamp + '.txt');
+	link.setAttribute('download', timestamp + '.csv');
 	link.href = window.URL.createObjectURL(data);
 	document.body.appendChild(link);
 	

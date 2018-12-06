@@ -12,18 +12,19 @@
 <body onload="setup()">
 <div id="consent" class="sections">
 	<h2>Consent Form</h2>
-	<p>By clicking "accept" I consent to be a participant in the current research performed by Tim Chandler, Darren Rawlings, Lawrence Fulton, Johnathan Hewlett of the University of Groningen.</p>
+	<p>By clicking "accept" I consent to be a participant in the current research performed by Tim Chandler, Darren Rawlings, Lawrence Fulton, Jonathan Hewlett of the University of Groningen.</p>
 	<p>I have agreed to take part in the study entitled visual vs audio recall, and I understand that my participation is entirely voluntary. I understand that my responses will be kept strictly confidential and anonymous. I have the option to withdraw from this study at any time without penalty, and I also have the right to request that my responses not be used.</p>
 	<p>The following points have been explained to me:</p>
 	<ol>
 		<li>The goal of this study is to test whether recall of visually presented information is superior to that of information presented audialy.</li>
-		<li>Participation in this study should help advance our understanding of memory.</li>
+		<li>My participation in this study should help advance our understanding of memory.</li>
 		<li>I shall be asked to recall two lists of 15 words.</li>
-		<li>The current study will last approximately 5 minutes. At the end of the study, the researcher will explain to me in more detail what the research was about.</li>
+		<li>The current study will last approximately 5 minutes. At the end of the study, the researcher will explain to me in more detail what the research is about.</li>
 		<li>My responses will be treated confidentially and my anonymity will be ensured. Hence, my responses cannot be identifiable and linked back to me as an individual.</li>
 		<li>The researcher will answer any questions I might have regarding this research, now or later in the course of the study.</li>
 	</ol>
-	<div class="fakeButton"><a onclick="moveTo('survey')">accept</a></div>
+	<p><input type="checkbox" class="checkbox" onclick="moveTo('survey')" />I consent to the above</p>
+	<!--div class="fakeButton" onclick="moveTo('survey')">accept</div-->
 </div>
 
 <div id="intro" class="sections">
@@ -31,13 +32,13 @@
 	<ul>
 		<li>The experiment consists of two halves</li>
 		<li>In each you will be presented with two lists of 15 words very briefly one-by-one</li>
-		<li>Either by the headphones or onscreen</li>
+		<li>These lists will be presented either by the headphones or onscreen</li>
 		<li>After each set of words please try to recall in to the microphone as many words as possible</li>
 		<li>Then you may continue to the second list by pressing next, where a second list will be presented</li>
-		<li>When you click start, the experiment will begin immediately.</li>
+		<li>When you click start, the experiment will begin immediately</li>
 	</ul>
-	<p>If you have any questions please ask before clicking start.</p>
-	<div class="fakeButton"><a onclick="moveTo('test')">start</a></div>
+	<p>If you have any questions please ask before clicking start on the next page.</p>
+	<div class="fakeButton" onclick="moveTo('startpage')">next</div>
 </div>
 
 <div id="survey" class="sections">
@@ -45,43 +46,45 @@
 	<form id="frm1">
 		<ul>
 			<input type="hidden" name="reference" value="" />
-			<input type="hidden" name="wordsRecalledVisual" value="" />
-			<input type="hidden" name="wordsRecalledAudio" value="" />
+			<input type="hidden" name="date" value="" />
+			<input type="hidden" name="time" value="" />
 			<input type="hidden" name="videoList" value="" />
 			<input type="hidden" name="testOrder" value="" />
 			<li>Gender:<br>
 				<input type="radio" name="gender" value="male" />male<br>
 				<input type="radio" name="gender" value="female" />female
 			</li>
-			<li>Age in years <input type="text" name="age" /></li>
+			<li>Age in years <input type="text" name="age" id="age" /></li>
 			<li>Currently studying<br>
 				<input type="radio" name="education" value="undergraduate" />undergraduate<br>
 				<input type="radio" name="education" value="masters" />masters<br>
 				<input type="radio" name="education" value="postgraduate" />post-graduate<br>
 				<input type="radio" name="education" value="none" />none
 			</li>
-			<li>Confirmation of English at CEFR level C1<br>
+			<li>Confirmation of English at CEFR level C1 or native English speaker<br>
 				<input type="radio" name="language" value="yes" />yes<br>
 				<input type="radio" name="language" value="no" />no
 			</li>
-			<input type="hidden" name="falsePositivesVisual" value="" />
-			<input type="hidden" name="falsePositivesAudio" value="" />
 		</ul>
 	</form>
-	<div class="fakeButton"><a onclick="moveTo('intro')">submit</a></div>
+	<div id="error">Please complete all questions</div>
+	<div class="fakeButton" onclick="validateForm()" class="centered">submit</div>
 </div>
-
+<div id="startpage">
+	When you are ready to start click the black rectangle
+	<div class="fakeButton centered" onclick="moveTo('test')">&nbsp;</div>
+</div>
 <div id="visualTest">
-	<div class="fakeButton" id="visualButton"><a onclick="moveTo('test')">next</a></div>
+	<div class="fakeButton centered" id="visualButton" onclick="moveTo('test')">next</div>
 </div>
 
 <div id="audioTest">
 	<audio id="audioFile"></audio>
-	<div class="fakeButton" id="audioButton"><a onclick="moveTo('test')">next</a></div>
+	<div class="fakeButton centered" id="audioButton" onclick="moveTo('test')">next</div>
 </div>
 
 <div id="endTest" class="sections">
-	<div class="fakeButton" id="create"><a onclick="downloadResults()">Create file</a></div>
+	<div id="create" onclick="downloadResults()">Create file</div>
 </div>
 </body>
 </html>

@@ -9,13 +9,19 @@ body {
 li {
 	padding: 10px;
 }
-.centered {
-  position: fixed; /* or absolute */
+.word {
+  position: fixed;
   top: 50%;
   left: 50%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
   font-size: 800%;
+}
+
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .fakeButton {
@@ -27,6 +33,20 @@ li {
 	cursor: pointer;
 }
 
-#intro, #survey, #visualTest, #audioTest, #endTest {display: none;}
+.checkbox {
+	height: 15px;
+	width: 15px;
+	border-color: black;
+}
+
+#error {
+	color: red;
+	padding: 5px;
+	border: 1px solid red;
+	margin: 10px 0 10px 0;
+	display: none;	
+}
+
+#intro, #survey, #visualTest, #audioTest, #endTest, #startpage {display: none;}
 
 #audioButton, #visualButton {display: none;}
