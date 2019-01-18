@@ -1,5 +1,5 @@
 var words = ["the", "be", "to", "of", "and", "a", "in", "that", "have", "I", "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "they", "we", "say", "her", "she", "or", "an", "will", "my", "one", "all", "would", "there", "their", "what", "so", "up", "out", "if", "about", "who", "get", "which", "go", "me", "when", "make", "can", "like", "time", "no", "just", "him", "know", "take", "people", "into", "year", "your", "good", "some", "could", "them", "see", "other", "than", "then", "now", "look", "only", "come", "its", "over", "think", "also", "back", "after", "use", "two", "how", "our", "work", "first", "well", "way", "even", "new", "want", "because", "any", "these", "give", "day", "most", "us"];
-var listA = [74,71,40];
+var listA = [74,71,40,93,49];
 var listB = [43,51,66,73,63,96,65,87,90,41,78,79,42,47,45];
 
 var duration = 1500; // the amount of time the words are displayed
@@ -33,28 +33,28 @@ function setup() {
 	document.getElementById("frm1").elements.namedItem("date").value = theDate.getDate() + '/' + theDate.getMonth() + '/' + theDate.getFullYear();
 	document.getElementById("frm1").elements.namedItem("time").value = theDate.getHours() + ':' + theDate.getMinutes();
 
-	/*** ANIMATE *********************/
+	/*** ANIMATE *********************
 	setTimeout(function() {
 		document.getElementById("btn_consent").checked = true;
-	}, 2000);
+	}, 5000);
 	setTimeout(function() {
 		document.getElementById("btn_consent").click();
-	}, 3000);
-	setTimeout(function() {
-		document.getElementById("btn_survey").click();
 	}, 6000);
 	setTimeout(function() {
-		document.getElementById("btn_instructions").click();
+		document.getElementById("btn_survey").click();
 	}, 9000);
 	setTimeout(function() {
+		document.getElementById("btn_instructions").click();
+	}, 12000);
+	setTimeout(function() {
 		document.getElementById("btn_black").click();
-	}, 11000);
+	}, 15000);
 	setTimeout(function() {
 		document.getElementById("visualButton").click();
-	}, 35500);
+	}, 42500);
 	setTimeout(function() {
 		document.getElementById("audioButton").click();
-	}, 43000);
+	}, 48000);
 	/*********************************/
 }
 
